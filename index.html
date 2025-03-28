@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuario COBAEH 2022-2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Landing Page Styles */
+        .landing-body {
+            font-family: Elika Gorica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://i.postimg.cc/0NHNsv5d/07266de8be26546db5b93dc0cddd9b88.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+        }
+        .container {
+            background-color: rgba(102, 0, 51, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #996633;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0052a3;
+        }
+
+        /* Video Page Styles */
+        .video-page {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+        }
+        .video-page.active {
+            display: flex;
+        }
+
+        /* Tribute Page Styles */
+        .tribute-page {
+            display: none;
+            background-color: #660000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .tribute-page.active {
+            display: block;
+        }
+        .tribute-header {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .teacher-message {
+            background-color: #E6B0AA;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #7D6608;
+            text-align: left;
+        }
+        .teacher-message h2 {
+            font-size: 1.5rem;
+        }
+        .teacher-message p {
+            font-size: 1.2rem;
+        }
+        .btn.show-landing-btn {
+            background-color: #0052a3;
+            color: white;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page active landing-body">
+        <div class="container">
+            <div class="title">ANUARIO GENERACIÓN 2022-2025</div>
+            
+            <img src="https://i.postimg.cc/jdTzD6Kw/Screenshot-2025-03-24-19-57-51-988-com-google-android-googlequicksearchbox.jpg" alt="Logo COBAEH" class="logo">
+            
+            <a href="lista-alumnos.html" class="btn">Lista de Alumnos</a>
+            <a href="Lista de profesores.html" class="btn show-professors-btn">Lista de Profesores</a>
+            <a href="#" class="btn show-video-btn">Vídeo</a>
+            <a href="#" class="btn show-tribute-btn">Mensajes de Despedida Profesores</a>
+            
+        </div>
+    </div>
+    
+    <!-- Video Page -->
+    <div class="video-page">
+        <div class="container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/7O859tO1rJo?si=tjv5i51_gmmJoAaS" title="YouTube Video Generacion 2022-2025" frameborder="0" allowfullscreen></iframe>
+            <button class="btn show-landing-btn">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <!-- Tribute Page -->
+    <div class="tribute-page">
+        <div class="container">
+            <div class="tribute-header">Tributo a Nuestros Maestros</div>
+            
+            <div class="teacher-message">
+                <h2>Lic. Vianey Reynoso Andablo</h2>
+                <p>"Gracias, maestra Vianey, por compartir con nosotros su pasión por la informática y el conocimiento práctico. Su dedicación y paciencia nos han enseñado que la tecnología no tiene límites. La recordaremos siempre con gratitud."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Profa. Isela Ruiz</h2>
+                <p>"Maestra Isela, su entusiasmo por las artes nos ha inspirado a ver el mundo con mayor creatividad. Gracias por ayudarnos a expresar nuestras emociones a través del arte. Su legado vivirá en cada pincelada y melodía."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Lic. José Augusto Hernández Hernández</h2>
+                <p>"Profesor José Augusto, sus enseñanzas han sido faros de luz en nuestro viaje académico. Con usted, aprendimos a cuestionar, reflexionar y encontrar nuestro propio camino. Su pasión por la filosofía nos acompañará siempre."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Ing. Mario Martinez Martinez</h2>
+                <p>"Ingeniero Mario, su forma de enseñarnos matemáticas nos demostró que los números también cuentan historias. Gracias por su paciencia y dedicación. Cada problema resuelto nos recordará su invaluable guía."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Lic. Miguel Alejandro Islas Mera</h2>
+                <p>"Profesor Miguel, su energía y entusiasmo en cada entrenamiento nos impulsaron a dar lo mejor de nosotros. Nos enseñó que el verdadero triunfo está en la perseverancia. Gracias por motivarnos a mantenernos en movimiento."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Ing. Arminda Dorantes Fuentes</h2>
+                <p>"Ingeniera Arminda, su pasión por la química convirtió las fórmulas en verdaderos descubrimientos. Gracias por despertar nuestra curiosidad científica y mostrarnos la belleza en cada reacción química."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Lic. Martha Monroy Basilio</h2>
+                <p>"Maestra Martha, sus clases fueron una invitación a comprender el mundo desde la ciencia y la investigación. Nos enseñó a observar con ojos críticos y a valorar el conocimiento como una herramienta para transformar nuestra realidad. Gracias por tanto."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Prof. Alfredo Cruz Cruz</h2>
+                <p>"Profesor Alfredo, con usted descubrimos que la música es el lenguaje del alma. Cada acorde y melodía nos recordó que las emociones se pueden expresar sin palabras. Su pasión será siempre una inspiración para nosotros."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Dra. Angelina Ortega Trejo</h2>
+                <p>"Dra. Angelina, gracias por acercarnos al mundo del inglés con paciencia y dedicación. Sus clases nos abrieron puertas a nuevas culturas y oportunidades. Sus enseñanzas serán nuestra guía en cada conversación y viaje."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Lic. Rafael Arista Melgarejo</h2>
+                <p>"Licenciado Rafael, sus enseñanzas sobre derecho nos mostraron la importancia de la justicia y la equidad. Nos inspiró a ser ciudadanos conscientes y a cuestionar con fundamentos. Gracias por guiarnos en el camino del conocimiento legal."</p>
+            </div>
+
+            <div class="teacher-message">
+                <h2>Mtra. Rocio Ramirez Rodríguez</h2>
+                <p>"Maestra Rocio, gracias por transportarnos a diferentes épocas y mundos a través de la literatura y la historia. Cada relato y análisis nos dejó una huella imborrable en nuestra forma de ver la vida."</p>
+            </div>
+            
+            <button class="btn show-landing-btn">Volver al Inicio</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const landingPage = document.querySelector('.landing-page');
+            const videoPage = document.querySelector('.video-page');
+            const tributePage = document.querySelector('.tribute-page');
+            const showVideoBtn = document.querySelector('.show-video-btn');
+            const showTributeBtn = document.querySelector('.show-tribute-btn');
+            const showLandingBtns = document.querySelectorAll('.show-landing-btn');
+
+            // Mostrar página de vídeo
+            showVideoBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                landingPage.classList.remove('active');
+                videoPage.classList.add('active');
+                window.scrollTo(0, 0);
+            });
+
+            // Mostrar página de tributo
+            showTributeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                landingPage.classList.remove('active');
+                tributePage.classList.add('active');
+                window.scrollTo(0, 0);
+            });
+
+            // Volver a la página principal
+            showLandingBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    videoPage.classList.remove('active');
+                    tributePage.classList.remove('active');
+                    landingPage.classList.add('active');
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

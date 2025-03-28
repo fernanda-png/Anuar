@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>
+        body {
+            margin: 0; /* Eliminar márgenes del body */
+            height: 100vh; /* Altura completa de la ventana */
+            display: flex; /* Usar flexbox para centrar el contenido */
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+            background-color: #F5F5F5; /* Color de fondo de la página */
+        }
+        
+        .professor-list-container {
+            border: 2px solid #8B4513; /* Color marrón */
+            background-color: #D2B48C; /* Color de fondo marrón claro */
+            padding: 20px; /* Espaciado interno */
+            border-radius: 10px; /* Bordes redondeados */
+            width: 90%; /* Ancho del contenedor */
+            max-width: 800px; /* Ancho máximo del contenedor */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto visual */
+        }
+        
+        .left-panel {
+            width: 200px;
+            background-color: #900C3F;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .left-panel h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .left-panel ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .left-panel li {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .left-panel li:hover {
+            background-color: #f0f0f0;
+        }
+  
+    .right-panel {
+        flex-grow: 1;
+        padding: 20px;
+        display: none;
+        background-image: url('https://i.postimg.cc/dQzgqBw7/cf0fcbdce8c519a09440391293f29e8f.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .right-panel.active {
+        display: block;
+    }
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-card img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .profile-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        .profile-card p {
+            font-size: 1.1em;
+            color: #581845;
+            max-width: 600px;
+            text-align: center;
+        }
+        .professor-list-container {
+            border: 2px solid #8B4513; /* Color marrón */
+            background-color: #D2B48C; /* Color de fondo marrón claro */
+            padding: 20px; /* Espaciado interno */
+            border-radius: 10px; /* Bordes redondeados */
+            margin: 20px; /* Margen externo */
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="professor-list-container">
+    <h2>Lista de Profesores</h2>
+    <ul>
+            <li onclick="mostrarPerfil('MarioMartinez')">MTRO. Mario Martinez Martinez</li>
+            <li onclick="mostrarPerfil('MarthaMonroy')">MTRA. Martha Monroy Basilio</li>
+            <li onclick="mostrarPerfil('ArmindaDorantes')">Ing. Arminda Dorantes</li>
+            <li onclick="mostrarPerfil('AgustoHernandez')">Lic. Agusto Hernández Hernández</li>
+            <li onclick="mostrarPerfil('AngelinaOrtega')">DRA. Angelina Ortega Trejo</li>
+            <li onclick="mostrarPerfil('MiguelIslas')">LIC. Miguel Alejandro Islas Mera</li>
+            <li onclick="mostrarPerfil('RocioRamirez')">MTRA. Rocio Ramirez Rodríguez</li>
+            <li onclick="mostrarPerfil('IselaRuiz')">MTRA. Isela Ruiz</li>
+            <li onclick="mostrarPerfil('VianeyReynoso')">LIC. Vianey Reynoso Andablo</li>
+            <li onclick="mostrarPerfil('RafaelArista')">MTRO. Rafael Arista Melgarejo</li>
+            <li onclick="mostrarPerfil('AlfredoCruz')">PROF. Alfredo Cruz Cruz</li>
+        </ul>
+    <a href="index.html" class="back-btn">Regresar al Inicio</a>
+</div>
+
+    <div class="right-panel" id="MarioMartinez">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/RVw7Zv53/IMG-20250326-WA0009.jpg" alt="Mario Martinez Martinez">
+            <h3>Mario</h3>
+            <p>Un maestro increíblemente apasionado por la enseñanza. Siempre encontraba una forma divertida de hacer las clases más interesantes. Sus anécdotas y su manera de explicar hacían que hasta los temas más difíciles fueran fáciles de entender.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="MarthaMonroy">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/kXFHR8ZN/FB-IMG-1742910277703.jpg" alt="Martha Monroy Basilio">
+            <h3>Mtra.Martha</h3>
+            <p>Con una paciencia infinita, Martha siempre se aseguraba de que todos sus alumnos comprendieran los temas antes de avanzar. Su forma de explicar era clara y detallada, y siempre tenía una sonrisa para motivar a sus estudiantes.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="ArmindaDorantes">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/C5PsS5T9/IMG-20250325-WA0049.jpg" alt="Arminda Dorantes">
+            <h3>Ing.Arminda</h3>
+            <p>Su dedicación y esfuerzo por la educación marcaron la diferencia en la vida de muchos estudiantes. Siempre estaba dispuesta a ayudar, y su compromiso con el aprendizaje de sus alumnos era admirable.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="AgustoHernandez">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/HsCKL3Ss/FB-IMG-1742910192218.jpg" alt="Agusto Hernández Hernández">
+            <h3>Lic.Agusto</h3>
+            <p>Siempre con un chiste listo, hacía que las clases fueran más dinámicas y entretenidas. Su carisma y buen humor lo convertían en uno de los profesores más queridos, y sus explicaciones siempre quedaban grabadas en la mente de los alumnos.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="AngelinaOrtega">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/3r2SzmKM/1000911046.jpg" alt="Angelina Ortega Trejo">
+            <h3>Dra.Angie</h3>
+            <p>Famosa por su creatividad, Angie encontraba formas únicas de explicar los temas más complicados. Sus métodos poco convencionales pero efectivos hacían que el aprendizaje fuera algo divertido y motivador.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="MiguelIslas">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/bvcxCqm6/IMG-20250325-WA0062.jpg" alt="Miguel Alejandro Islas Mera">
+            <h3>Miguel</h3>
+            <p>Siempre motivando a los alumnos a dar su máximo esfuerzo en cada entrenamiento. Sus clases no solo eran físicas, sino que también enseñaban disciplina, trabajo en equipo y superación personal.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="RocioRamirez">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/1z47ddzM/FB-IMG-1742911482528.jpg" alt="Rocio Ramirez Rodríguez">
+            <h3>Rocio</h3>
+            <p>Con una disciplina impecable, enseñaba con rigor pero también con mucho cariño. Su exigencia ayudaba a sus alumnos a dar lo mejor de sí mismos, y su apoyo incondicional los hacía sentirse valorados.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="IselaRuiz">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/NjdPptQ5/FB-IMG-1742910169398.jpg" alt="Isela Ruiz">
+            <h3>Isela</h3>
+            <p>Sus consejos y apoyo siempre fueron un pilar fundamental para sus estudiantes. Tenía una forma de enseñar que inspiraba confianza y seguridad, y siempre encontraba la manera de hacer que sus alumnos se sintieran importantes.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="VianeyReynoso">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/mZ9JRKy5/FB-IMG-1742910157928.jpg" alt="Vianey Reynoso Andablo">
+            <h3>Vianey</h3>
+            <p>Siempre fomentaba el pensamiento crítico y la curiosidad entre sus alumnos. Le encantaba hacer preguntas desafiantes que motivaban a sus estudiantes a reflexionar y aprender más allá de los libros.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="RafaelArista">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/HsHZmnxr/1000911047.png" alt="Rafael Arista Melgarejo">
+            <h3>Rafael</h3>
+            <p>Su pasión por la enseñanza se reflejaba en cada clase, siempre buscando que sus alumnos aprendieran con entusiasmo. Con un enfoque dinámico y participativo, hacía que cada lección fuera una experiencia enriquecedora.</p>
+        </div>
+    </div>
+
+    <div class="right-panel" id="AlfredoCruz">
+        <div class="profile-card">
+            <img src="https://i.postimg.cc/5y0LYytt/IMG-20250325-WA0061.jpg" alt="Alfredo Cruz Cruz">
+            <h3>Alfredo</h3>
+            <p>Con una forma única de enseñar, hacía que cada lección fuera memorable y entretenida. Sus ejemplos y explicaciones siempre quedaban en la mente de los alumnos, y su compromiso con la educación era evidente.</p>
+        </div>
+    </div>
+
+    <script>
+        function mostrarPerfil(id) {
+            // Ocultar todos los perfiles
+            const panels = document.querySelectorAll('.right-panel');
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Mostrar el perfil seleccionado
+            const selectedPanel = document.getElementById(id);
+            selectedPanel.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
