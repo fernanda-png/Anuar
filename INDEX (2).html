@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuario de Alumnos - COBAEH</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .names-column {
+            width: 30%;
+            background-color: #660033;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .details-column {
+            width: 70%;
+            background-color: #f0f8ff;
+            background-image: url('https://i.postimg.cc/90rvN61D/f72a00ed2b212446272b1d7247c6adf0.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-y: auto;
+        }
+        .student-name {
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .student-name:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        .student-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .student-description {
+            max-width: 500px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .social-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+        }
+        .instagram-btn {
+            background-color: #E1306C;
+        }
+        .facebook-btn {
+            background-color: #3b5998;
+        }
+        .no-social {
+            color: #666;
+            font-style: italic;
+        }
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #660033;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .back-btn:hover {
+            background-color: #550026;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="names-column" id="studentList">
+            <h2>Lista de Alumnos</h2>
+        </div>
+        <div class="details-column" id="studentDetails">
+            <h2>Selecciona un alumno</h2>
+            <p>Haz clic en un nombre para ver sus detalles</p>
+            <button class="back-btn" onclick="goBack()">Volver a Inicio</button>
+        </div>
+    </div>
+
+    <script>
+        // Datos de los alumnos
+        const students = [
+            {
+                name: "Cristopher Yael Sánchez Clemente",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250323-WA0001.jpg",
+                description: "Inteligente, participativo, le gusta hablar de todos los temas, sociable con todas las personas.",
+                instagram: "https://www.instagram.com/yael_levrone?igsh=cGxsemhpbjhmbGZ0"
+            },
+            {
+                name: "Anel Sánchez Ensastiga",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0014.jpg",
+                description: "Inteligente, le gusta tomarse fotos, va al gym, a veces un poco irresponsable en la escuela, buena onda.",
+                instagram: "https://www.instagram.com/annel_ensastiga?igsh=MWZlNWh0bzd6ZzVjOA==",
+                facebook: "https://www.facebook.com/share/1EshBsAFCw/"
+            },
+            {
+                name: "Patricio Vazquez Gómez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250323-WA0002.jpg",
+                description: "Desgorroso en el salón de clases, gracioso, le gusta convivir con todos sus compañeros.",
+                instagram: "https://www.instagram.com/patricio._.vg?igsh=ZjVhdm9ncnZuanFj"
+            },
+            {
+                name: "Guadalupe Vazquez Oropeza",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0015.jpg",
+                description: "Risueña, no se lleva con todos sus compañeros, es buena onda y muy divertida.",
+                instagram: "https://www.instagram.com/mm.guadalupevaz?igsh=ejIyMzM3NTYweDA5",
+                facebook: "https://www.facebook.com/share/1BStBmgmWJ/"
+            },
+            {
+                name: "Adara Miraina Zamora Avila",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250323-WA0003.jpg",
+                description: "Dedicada a la escuela, trabajadora, le cuesta encajar con los compañeros, divertida.",
+                facebook: "https://www.facebook.com/share/19QxCtGRxr/"
+            },
+            {
+                name: "Fernando Zamora Sánchez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250323-WA0005.jpg",
+                description: "Callado, cuando agarra confianza es muy divertido, penoso en actividades escolares.",
+                instagram: "https://www.instagram.com/fernando_samora15?igsh=b2JyM3ZxZXlleHhp"
+            },
+            {
+                name: "Daniela Olguin Martinez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0060.jpg",
+                description: "Es una persona alegre, un poco irresponsable, le gusta mucho platicar con sus amigas y muy extrovertida.",
+                instagram: "https://www.instagram.com/danny_olguin_?igsh=MWQ4bng1a3JpbTdt",
+                facebook: "https://www.facebook.com/share/15Vzs1idjy/"
+            },
+            {
+                name: "Leonel Pérez García",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-2025-03-19-09-30-11-511-com-facebook-katana.jpg",
+                description: "Muy irresponsable, le gusta hechar desgorre con sus amigos, y jugar Free Fire y Call Of Duty",
+                instagram: "https://www.instagram.com/xox_l30.gx3?igsh=MTkxZG8xeXJkNmJ0aQ==",
+                facebook: "https://www.facebook.com/share/16A3N3JkHf/"
+            },
+            {
+                name: "Rodrigo Pérez Vasquez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0079.jpg",
+                description: "Persona ambivertida, toca varios instrumentos musicales, y le gusta mucho convivir con sus amistades.",
+                instagram: "https://www.instagram.com/rodri_pv_?igsh=dzgwN2l5cHlra2dr"
+            },
+            {
+                name: "Rodrigo Yanixan Pérez Vera",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-2025-03-19-10-26-42-943-com-google-android-apps-photos.jpg",
+                description: "Aveces un poco irresponsable, le gusta mucho andar en moto, salir con sus amigos, convivir con los mismos y amable.",
+                instagram: "https://www.instagram.com/xvi_rodrigo?igsh=bzJoNm40bXkxam40"
+            },
+            {
+                name: "Carlos Jair Pineda Pineda",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250303-WA0098.jpg",
+                description: "Es amable, le gusta mucho estar con sus amigos, es ambivertido, alegre, atento, solidario, sabe tocar piano, y le gusta jugar fútbol.",
+                instagram: "https://www.instagram.com/carlos_jair_pineda_07?igsh=MWEzbHg2MDY3M295ZA==",
+                facebook: "https://www.facebook.com/share/1BeU4e5KVy/"
+            },
+            {
+                name: "Alma Paulina Ponce Gómez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-2025-03-19-09-40-55-773-com-facebook-katana.jpg",
+                description: "Es muy creativa, es vanidosa, muy fashion, le gusta estar con sus amigas, y responsable.",
+                instagram: "https://www.instagram.com/paulina_ponce55?igsh=M3NnOWI3c2U0NzNj",
+                facebook: "https://www.facebook.com/share/16G5kxuT8o/"
+            },
+            {
+                name: "Madalena Allyson Romero",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0076.jpg",
+                description: "Le gusta leer, es responsable, es muy introvertida.",
+                instagram: "https://www.instagram.com/madaromero_1?igsh=b3h3aGZybHU3dWh0",
+                facebook: "https://www.facebook.com/share/1E2uDUJFje/"
+            },
+            {
+                name: "Denis Ángeles Bolaños",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0062.jpg",
+                description: "Es una persona con una energía contagiosa y una gran habilidad para crear conexiones profundas con quienes la rodean. Extrovertida en su círculo cercano, siempre está dispuesta a compartir una sonrisa, una palabra de aliento o un gesto de cariño. Su atención a los detalles emocionales de los demás la hace destacar como alguien genuinamente interesada en el bienestar ajeno, alta con ojos redondos color cafés, Linda, no solo por su apariencia, sino también por la calidez, sabe equilibrar su energía social con momentos de introspección, lo que la hace reflexiva y consciente de su impacto en los demás.",
+                instagram: "https://www.instagram.com/angeles.db?igsh=MXh4ZnBoYXF0bGplZw==",
+                facebook: "https://www.facebook.com/share/19S8Vczyye/"
+            },
+            {
+                name: "Rodrigo Aparicio Gomez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-20250323-234241-Instagram.jpg",
+                description: "Alto y con una complexión fuerte, tiene el cabello corto y negro. Es tranquilo y un poco introvertido, Prefiere escuchar antes de hablar.",
+                instagram: "https://www.instagram.com/rodrigoap_go?igsh=ejI1enhnZHcwaXlp",
+                facebook: "https://www.facebook.com/share/16KndeBktA/"
+            },
+            {
+                name: "Nancy Avila Melendez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0063.jpg",
+                description: "De estatura media y complexión atlética, tiene el cabello corto y rizado. Es extrovertida, espontánea y siempre está buscando nuevas aventuras.",
+                instagram: "https://www.instagram.com/nancy_avm?igsh=MWF1azAwZGJmNWh1ZA==",
+                facebook: "https://www.facebook.com/share/1MzAPCcp35/"
+            },
+            {
+                name: "Natalia Edith Barraza Martinez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0064.jpg",
+                description: "Es alta y de complexión delgada, con el cabello lacio y castaño.",
+                instagram: "https://www.instagram.com/nataliabarrazae?igsh=MWUxZTdhcGthejIwZg==",
+                facebook: "https://www.facebook.com/share/12KaR1fXYqJ/"
+            },
+            {
+                name: "Regina Isabel Cornejo Hernandez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250324-WA0012.jpg",
+                description: "De estatura media con ondas naturales. Es muy sociable y siempre está rodeada de amigos.",
+                instagram: "https://www.instagram.com/regina_heernandez?igsh=MWVrbDQ0b3U4amsxaA=="
+            },
+            {
+                name: "Jessica Cortes Resendiz",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250324-WA0013.jpg",
+                description: "Es alta y de complexión delgada, con el cabello lacio y castaño. Es muy inteligente y organizada, siempre tiene todo planeado.",
+                instagram: "https://www.instagram.com/jay_cortees?igsh=MXZ3bWplbjh4MmUxeQ=="
+            },
+            {
+                name: "Evelyn Berenice Cruz Reyes",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-20250324-112120-Instagram.jpg",
+                description: "Bajita y de piel morena, con una sonrisa cálida y ojos expresivos.",
+                instagram: "https://www.instagram.com/evelyncruz._15?igsh=MTh5Ync2YWY0cTZ1Mw==",
+                facebook: "https://www.facebook.com/share/18q9sC4g1w/"
+            },
+            {
+                name: "Yolis Alexa De La Torre Gutiérrez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0098.jpg",
+                description: "Persona muy imperativa que copia los trabajos de los demás de forma salvaje.",
+                instagram: "https://www.instagram.com/alexaa__trr?igsh=NTIyem53dndlYTN6"
+            },
+            {
+                name: "Jesús Alexander Esquivel Amaro",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0096.jpg",
+                description: "Persona activa aficionada del futbol y el desgorre.",
+                instagram: "https://www.instagram.com/alexamarom_?igsh=b3g0bWFyZGh0ejFk"
+            },
+            {
+                name: "Leonardo Patricio Díaz Cruz",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0097.jpg",
+                description: "Persona imperativa aficionada del chisme y el relajo.",
+                instagram: "https://www.instagram.com/bitchleonardo?igsh=dHlia3NkbGtsNmZv"
+            },
+            {
+                name: "Kevin Bernabé Flores Guillén",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0101.jpg",
+                description: "Persona activa que le gusta el ejercicio y disciplina.",
+                instagram: "https://www.instagram.com/kbfg_goma?igsh=MWQ5NWM2NDlheXpxcQ=="
+            },
+            {
+                name: "José Andrés Guillén Capistran",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0099.jpg",
+                description: "Persona amable, disciplinaria y activa con las personas.",
+                instagram: "https://www.instagram.com/andrew__fxp7?igsh=enFmZWhyY3QzODQ4"
+            },
+            {
+                name: "Adriana Lucero Hernández López",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0095.jpg",
+                description: "Persona activa y responsable con sus asuntos."
+            },
+            {
+                name: "Jaquelinne Hernández Rosales",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250325-WA0100.jpg",
+                description: "Persona amable, activa a la que le gusta el relajo y el chisme.",
+                instagram: "https://www.instagram.com/jack_rossxxh?igsh=MnV4OWRmcG5ocHVw"
+            },
+            {
+                name: "Julio Cesar Jimenez Cortes",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/FB-IMG-1742398944375.jpg",
+                description: "Es una persona alegre, con ganas de ayudar a la gente, participativo y muy inteligente en las clases, una persona con buen corazón.",
+                instagram: "https://www.instagram.com/juliocjimenezc15?igsh=MWJzc2JzeXV3bWdoOQ==",
+                facebook: "https://www.facebook.com/share/16Kx1U2ibM/"
+            },
+            {
+                name: "Erick Sebastian Jimenez Juarez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-2025-03-25-20-19-28-109-com-miui-gallery.png",
+                description: "Persona humorista, encaja rápido con las personas, divertido y amigable.",
+                instagram: "https://www.instagram.com/sebxs_jim?igsh=YWtpcmFyN3ozMHgx"
+            },
+            {
+                name: "Héctor Jimenez Melendez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0197.jpg",
+                description: "Persona tímida, agarra confianza rápido, trabajador, le gustan los videojuegos.",
+                instagram: "https://www.instagram.com/t3l3u01?igsh=aWdkM2MwYzV4MWk5"
+            },
+            {
+                name: "Alan Josue León Avila",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-2025-03-19-09-30-42-887-com-miui-gallery.jpg",
+                description: "Es dedicado a la escuela, le gusta estar con sus amigos en las actividades, amigable y le ayuda a sus compañeros.",
+                instagram: "https://www.instagram.com/alan_l30n_?igsh=MXAwMmVodnZseHd2Mw==",
+                facebook: "https://www.facebook.com/share/1HZ4Wot43C/"
+            },
+            {
+                name: "Leslie Jocelyn Leonel Sánchez",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0023.jpg",
+                description: "Es vanidosa, siempre le gusta verse arreglada, entrega sus trabajos organizados y con mucho detalle.",
+                instagram: "https://www.instagram.com/jozz_sanch3z?igsh=MW8xb3VlM2I1NHAxNQ==",
+                facebook: "https://www.facebook.com/share/16BWKtVhoi/"
+            },
+            {
+                name: "Gael López García",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/Screenshot-2025-03-25-20-21-26-778-com-miui-gallery.png",
+                description: "Es irresponsable en la escuela, es bueno en el fútbol, le gusta echar desgorre con sus amigos dentro de las clases.",
+                instagram: "https://www.instagram.com/lopez_gael_17?igsh=a2loa2w4ZzQ4dDAx",
+                facebook: "https://www.facebook.com/share/1Bgm6xPsH4/"
+            },
+            {
+                name: "Alejandro Farid Morales Santiago",
+                photo: "https://raw.githubusercontent.com/usuario/imagenes-alumnos/main/IMG-20250319-WA0021.jpg",
+                description: "Le gusta jugar fútbol, a veces es irresponsable en la escuela, trata de encajar en grupos de amistades escolares, reservado.",
+                instagram: "https://www.instagram.com/fasantiago60?igsh=MTc2cjIyN2Y4cW12aA==",
+                facebook: "https://www.facebook.com/share/1CUZY9eJez/"
+            }
+        ];
+
+        const studentList = document.getElementById('studentList');
+        const studentDetails = document.getElementById('studentDetails');
+
+        students.forEach(student => {
+            const nameElement = document.createElement('div');
+            nameElement.classList.add('student-name');
+            nameElement.textContent = student.name;
+            
+            nameElement.addEventListener('click', () => {
+                let socialButtons = '';
+                if (student.instagram) {
+                    socialButtons += `<a href="${student.instagram}" target="_blank" class="social-btn instagram-btn">Instagram</a>`;
+                }
+                if (student.facebook) {
+                    socialButtons += `<a href="${student.facebook}" target="_blank" class="social-btn facebook-btn">Facebook</a>`;
+                }
+                if (!student.instagram && !student.facebook) {
+                    socialButtons = '<p class="no-social">Sin redes sociales</p>';
+                }
+
+                studentDetails.innerHTML = `
+                    <h2>${student.name}</h2>
+                    <img src="${student.photo}" alt="${student.name}" class="student-photo">
+                    <div class="student-description">${student.description}</div>
+                    <div class="social-buttons">${socialButtons}</div>
+                    <button class="back-btn" onclick="location.href='index.html'">Volver a Inicio</button>
+                `;
+            });
+
+            studentList.appendChild(nameElement);
+        });
+
+        // Función para volver a la pantalla de inicio
+        function goBack() {
+            studentDetails.innerHTML = `
+                <h2>Selecciona un alumno</h2>
+                <p>Haz clic en un nombre para ver sus detalles</p>
+                <button class="back-btn" onclick="location.href='index.html'">Volver a Inicio</button>
+            `;
+        }
+    </script>
+</body>
+</html>
